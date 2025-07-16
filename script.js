@@ -19,6 +19,7 @@ emailInput.addEventListener("input", () => {
 
 passwordInput.addEventListener("input", isPasswordValid);
 confirmPassword.addEventListener("input", isConfirmPasswordValid);
+form.addEventListener("submit", checkFormValidity);
 
 function isPasswordValid() {
     let errorMessage = getPasswordError();
@@ -68,5 +69,18 @@ function showEmailError() {
         emailError.textContent = "Please enter a value";
     } else if (emailInput.validity.typeMismatch) {
         emailError.textContent = "Please Enter a valid email";
+    }
+}
+
+function checkFormValidity(e) {
+    if (
+        !emailInput.validity.valid ||
+        !isPasswordValid() ||
+        !isConfirmPasswordValid()
+    ) {
+        e.preventDefault();
+        showEmailError();
+        isPasswordValid();
+        isConfirmPasswordValid();
     }
 }
