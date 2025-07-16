@@ -12,6 +12,9 @@ const confirmPasswordError = document.querySelector(".confirm-password-error");
 const countryInput = document.querySelector("#country");
 const countryError = document.querySelector(".country-error");
 
+const postalCode = document.querySelector("#postal-code");
+const postalCodeError = document.querySelector(".postal-code-error");
+
 emailInput.addEventListener("input", () => {
     if (emailInput.validity.valid) {
         emailError.textContent = "";
@@ -23,6 +26,7 @@ emailInput.addEventListener("input", () => {
 passwordInput.addEventListener("input", isPasswordValid);
 confirmPassword.addEventListener("input", isConfirmPasswordValid);
 countryInput.addEventListener("input", isValidCountry);
+postalCode.addEventListener("input", isPostalCodeValid);
 form.addEventListener("submit", checkFormValidity);
 
 function isPasswordValid() {
@@ -97,5 +101,36 @@ function isValidCountry() {
         countryError.textContent = "Select a country";
         return false;
     }
+    postalCodeError.textContent = "";
     return true;
+}
+
+function isPostalCodeValid() {
+    let constraints = {
+        country: ["(?!.*)", "Select a country"],
+        ch: [
+            "^(CH-)?\\d{4}$",
+            "Swiss postal codes must have exactly 4 digits: e.g. CH-1950 or 1950",
+        ],
+        fr: [
+            "^(F-)?\\d{5}$",
+            "French postal codes must have exactly 5 digits: e.g. F-75012 or 75012",
+        ],
+        de: [
+            "^(D-)?\\d{5}$",
+            "German postal codes must have exactly 5 digits: e.g. D-12345 or 12345",
+        ],
+        nl: [
+            "^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$",
+            "Dutch postal codes must have exactly 4 digits, followed by 2 letters except SA, SD and SS",
+        ],
+    };
+    const constraint = new RegExp(constraints[countryInput.value][0]);
+    if (constraint.test(postalCode.value)) {
+        postalCodeError.textContent = "";
+        return true;
+    } else {
+        postalCodeError.textContent = constraints[countryInput.value][1];
+        return false;
+    }
 }
