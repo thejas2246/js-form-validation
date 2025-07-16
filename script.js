@@ -6,6 +6,9 @@ const emailError = document.querySelector(".email-error");
 const passwordInput = document.querySelector("#password");
 const passwordError = document.querySelector(".password-error");
 
+const confirmPassword = document.querySelector("#confirm-password");
+const confirmPasswordError = document.querySelector(".confirm-password-error");
+
 emailInput.addEventListener("input", () => {
     if (emailInput.validity.valid) {
         emailError.textContent = "";
@@ -15,6 +18,7 @@ emailInput.addEventListener("input", () => {
 });
 
 passwordInput.addEventListener("input", isPasswordValid);
+confirmPassword.addEventListener("input", isConfirmPasswordValid);
 
 function isPasswordValid() {
     let errorMessage = getPasswordError();
@@ -48,6 +52,15 @@ function getPasswordError() {
         message.push("please enter a value");
     }
     return message;
+}
+
+function isConfirmPasswordValid() {
+    if (passwordInput.value === confirmPassword.value) {
+        confirmPasswordError.textContent = "";
+        return true;
+    }
+    confirmPasswordError.textContent = "password doesn't match";
+    return false;
 }
 
 function showEmailError() {
