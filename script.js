@@ -85,13 +85,16 @@ function checkFormValidity(e) {
         !emailInput.validity.valid ||
         !isPasswordValid() ||
         !isConfirmPasswordValid() ||
-        !isValidCountry()
+        !isValidCountry() ||
+        !isValidCountry() ||
+        !isPostalCodeValid()
     ) {
         e.preventDefault();
         showEmailError();
         isPasswordValid();
         isConfirmPasswordValid();
         isValidCountry();
+        isPostalCodeValid();
     }
 }
 
