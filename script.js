@@ -29,7 +29,7 @@ function isPasswordValid() {
 
 function getPasswordError() {
     let message = [];
-    if (passwordInput.value.length !== 0) {
+    if (passwordInput.value.length !== 0 && passwordInput.value.length < 14) {
         if (!/[A-Z]/.test(passwordInput.value)) {
             message.push("one uppercase letter");
         }
@@ -42,6 +42,8 @@ function getPasswordError() {
         if (!/[0-9]/.test(passwordInput.value)) {
             message.push("one Number");
         }
+    } else if (passwordInput.value.length >= 14) {
+        message.push("password should be less than 10 letter");
     } else {
         message.push("please enter a value");
     }
