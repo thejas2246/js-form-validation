@@ -9,6 +9,9 @@ const passwordError = document.querySelector(".password-error");
 const confirmPassword = document.querySelector("#confirm-password");
 const confirmPasswordError = document.querySelector(".confirm-password-error");
 
+const countryInput = document.querySelector("#country");
+const countryError = document.querySelector(".country-error");
+
 emailInput.addEventListener("input", () => {
     if (emailInput.validity.valid) {
         emailError.textContent = "";
@@ -19,6 +22,7 @@ emailInput.addEventListener("input", () => {
 
 passwordInput.addEventListener("input", isPasswordValid);
 confirmPassword.addEventListener("input", isConfirmPasswordValid);
+countryInput.addEventListener("input", isValidCountry);
 form.addEventListener("submit", checkFormValidity);
 
 function isPasswordValid() {
@@ -76,11 +80,22 @@ function checkFormValidity(e) {
     if (
         !emailInput.validity.valid ||
         !isPasswordValid() ||
-        !isConfirmPasswordValid()
+        !isConfirmPasswordValid() ||
+        !isValidCountry()
     ) {
         e.preventDefault();
         showEmailError();
         isPasswordValid();
         isConfirmPasswordValid();
+        isValidCountry();
     }
+}
+
+function isValidCountry() {
+    countryError.textContent = "";
+    if (countryInput.value === "country") {
+        countryError.textContent = "Select a country";
+        return false;
+    }
+    return true;
 }
