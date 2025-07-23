@@ -8,4 +8,27 @@ body{
     background-repeat: no-repeat;
     height: 100vh;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.form-container{
+    background-color: white;
+    width: 250px;
+    padding:20px 60px;
+    border-radius: 20px;
+}
+.submit-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label{
+    display: block;
+}
+input,select{
+    width: 100%;
+    box-sizing: border-box;
 }
