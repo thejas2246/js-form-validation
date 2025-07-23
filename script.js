@@ -23,8 +23,8 @@ emailInput.addEventListener("input", () => {
     }
 });
 
-passwordInput.addEventListener("input", isPasswordValid);
-confirmPassword.addEventListener("input", isConfirmPasswordValid);
+passwordInput.addEventListener("input", showPasswordError);
+confirmPassword.addEventListener("input", showPasswordError);
 countryInput.addEventListener("input", isValidCountry);
 postalCode.addEventListener("input", isPostalCodeValid);
 form.addEventListener("submit", checkFormValidity);
@@ -136,4 +136,9 @@ function isPostalCodeValid() {
         postalCodeError.textContent = constraints[countryInput.value][1];
         return false;
     }
+}
+
+function showPasswordError() {
+    isPasswordValid();
+    isConfirmPasswordValid();
 }

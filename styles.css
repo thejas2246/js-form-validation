@@ -3,3 +3,9 @@
     height: 10px;
     font-size: 14px;
 }
+body{
+    background-image: linear-gradient(121.6deg, #FFFFFFFF 0%, #007BFF1A 50%, #FFFAFA1A 100%); 
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+}
